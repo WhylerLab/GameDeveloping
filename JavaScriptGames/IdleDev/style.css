@@ -1,5 +1,22 @@
+/* RESET */
+
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
+}
+
+
+/* BASICS */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    color: whitesmoke;
+
+    background: #0A3232;
+    background: linear-gradient(180deg, rgb(10, 25, 25) 0%, rgb(25, 50, 50) 100%);
+    background-repeat: no-repeat;
+    background-size: auto;
+    height: 100vh;
 }
