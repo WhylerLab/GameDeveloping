@@ -34,52 +34,98 @@ body {
     justify-content: space-between;
     align-items: flex-end;
 
-    padding: 0.5em 1em;
+    padding: 0.5rem 1rem;
 
     width: 100%;
-    height: 6em;
+    height: 6rem;
+}
+
+
+/* BASIC CLASSES */
+.label {
+    width: 100%;
+    height: 1.5rem;
+    
+    font-size: 13px;
+    font-weight: normal;
+
+    text-align: center;
+
+    opacity: 0.5;
 }
 
 
 /* RESOURCE WRAPPER */
 .resource_wrapper {
     display: flex;
+    justify-content: space-around;
+
     width: 100%;
-    height: 100px;    
+    height: 65px;  
+    
+    margin: 2rem 0;
 }
 
 .resource {
-    display: none;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    width: 48%;
+    height: 90px;
+
+    border-radius: 10px;
+    border: 1px solid DarkGrey;
 }
 
-.money {
-    display: none;
+#money_total_counter {
+    width: 100%;
+
+    font-size: 24px;
+    font-weight: bold;
+
+    text-align: center;
 }
 
-.loc {
-    display: none;
+#loc_total_counter {
+    width: 100%;
+
+    font-size: 24px;
+    font-weight: bold;
+
+    text-align: center;
 }
 
 
 /* PRODUCT WRAPPER */
 .product_wrapper {
-    display: none;
+    display: flex;
+    justify-content: space-around;
+
+    margin-top: 1rem;
+
+    width: 100%;
+    height: 90px;
 }
 
 .product {
-    display: none;
+    width: 31%;
+    height: 90px;
+
+    border-radius: 10px;
+    border: 1px solid DarkGrey;
 }
 
 .script_file {
-    display: none;
+    display: block;
 }
 
 .app_file {
-    display: none;
+    display: block;
 }
 
 .bug_report {
-    display: none;
+    display: block;
 }
 
 
