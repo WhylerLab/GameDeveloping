@@ -1,5 +1,4 @@
 /* RESET */
-
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0px;
@@ -8,7 +7,6 @@
 
 
 /* BODY */
-
 body {
     display: flex;
     justify-content: center;
@@ -21,7 +19,6 @@ body {
 
 
 /* CONTENT WRAPPER */
-
 .content_wrapper {
     display: flex;
     justify-content: center;
@@ -41,4 +38,92 @@ body {
 
     width: 100%;
     height: 6em;
+}
+
+
+/* RESOURCE WRAPPER */
+.resource_wrapper {
+    display: flex;
+    width: 100%;
+    height: 100px;    
+}
+
+.resource {
+    display: none;
+}
+
+.money {
+    display: none;
+}
+
+.loc {
+    display: none;
+}
+
+
+/* PRODUCT WRAPPER */
+.product_wrapper {
+    display: none;
+}
+
+.product {
+    display: none;
+}
+
+.script_file {
+    display: none;
+}
+
+.app_file {
+    display: none;
+}
+
+.bug_report {
+    display: none;
+}
+
+
+/* PROGRESS WRAPPER */
+.progress_wrapper {
+    display: none;
+}
+
+.progress {
+    display: none;
+}
+
+.script_file_progress {
+    display: none;
+}
+
+.app_file_progress {
+    display: none;
+}
+
+
+/* PLAYER MENU WRAPPER */
+.action_wrapper {
+    display: none;
+}
+
+.market_wrapper {
+    display: none;
+}
+
+
+/* GENERATOR WRAPPER */
+.generator_wrapper {
+    display: none;
+}
+
+
+/* UPGRADE WRAPPER */
+.upgrade_wrapper {
+    display: none;
+}
+
+
+/* FOOTER */
+.footer {
+    display: none;
 }
