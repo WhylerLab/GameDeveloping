@@ -76,6 +76,24 @@ body {
     opacity: 0.5;
 }
 
+.label_action {
+    margin: 0.5rem 0;
+    
+    font-size: 13px;
+    font-weight: normal;
+
+    opacity: 0.5;
+}
+
+.label_market {
+    margin: 0.5rem 0;
+    
+    font-size: 13px;
+    font-weight: normal;
+
+    opacity: 0.5;
+}
+
 
 /* RESOURCE WRAPPER */
 .resource_wrapper {
@@ -211,14 +229,14 @@ body {
 
     border-radius: 20px;
 
-    border: 1px solid darkgrey;
+    border: 1px solid DarkGrey;
 }
 
 .progressbar_fill_script {
     width: 34%;
     height: 100%;
 
-    background-color: gold;
+    background-color: Grey;
 }
 
 .progressbar_apps {
@@ -229,36 +247,61 @@ body {
 
     border-radius: 20px;
 
-    border: 1px solid darkgrey;
+    border: 1px solid DarkGrey;
 }
 
 .progressbar_fill_apps {
     width: 14%;
     height: 100%;
 
-    background-color: gold;
+    background-color: Grey;
 }
 
 
 /* PLAYER MENU WRAPPER */
+.player_menu_wrapper {
+    display: flex;
+    justify-content: space-around;
+
+    margin-top: 4rem;
+
+    width: 100%;
+    height: 150px;
+    border: 1px soilid green;
+}
+
 .action_wrapper {
-    display: none;
+    width: 35%;
+    height: 90px;
+
+    padding: 0 0.5rem;
+
+    border-radius: 10px;
+
+    border: 1px solid DarkGrey;
 }
 
 .market_wrapper {
-    display: none;
+    width: 60%;
+    height: 90px;
+
+    padding: 0 0.5rem;
+
+    border-radius: 10px;
+
+    border: 1px solid DarkGrey;
 }
 
 
 /* GENERATOR WRAPPER */
 .generator_wrapper {
-    display: none;
+    display: block;
 }
 
 
 /* UPGRADE WRAPPER */
 .upgrade_wrapper {
-    display: none;
+    display: block;
 }
 
 
