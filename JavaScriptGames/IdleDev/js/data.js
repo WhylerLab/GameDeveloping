@@ -1,1 +1,0 @@
-// generators, upgrades, Konstanten
