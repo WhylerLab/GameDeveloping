@@ -283,6 +283,11 @@ body {
     border: 1px solid DarkGrey;
 }
 
+.loc_Name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
 #write_loc_btn {
     width:100%;
     height: 50px;
@@ -308,6 +313,18 @@ body {
 .generator_wrapper {
     width: 100%;
     height: auto;
+}
+
+.gen_Name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.gen_Costs {
+    float: right;
+
+    font-size: 18px;
+    font-weight: bold;
 }
 
 #trainee_btn {
