@@ -278,7 +278,7 @@ body {
     margin-top: 4rem;
 
     width: 100%;
-    height: 150px;
+    height: auto;
 }
 
 
@@ -342,9 +342,19 @@ body {
     width: 100%;
     height: 50px;
 
+    margin-bottom: 2rem;
+
     border-radius: 10px;
 }
 
+#junior_btn {
+    width: 100%;
+    height: 50px;
+
+    margin-bottom: 2rem;
+
+    border-radius: 10px;
+}
 
 /* UPGRADE WRAPPER */
 .upgrade_wrapper {
