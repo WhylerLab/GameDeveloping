@@ -18,6 +18,7 @@ const traineeIncomeCounter = document.getElementById('trainee_income_counter');
 // SETUP
 var locTotalVar = 0;
 var moneyTotalVar = 0;
+var locValue = 1.50;
 
 var locIncomeVar = 0;
 
@@ -37,13 +38,15 @@ var traineeMoneyPerSecond = 1.5;
 
 
 // ACTION FUNCTIONS
-locClick.addEventListener('click', function() {
-    locIncomeVar += 1.50;
-    locTotalIncome.textContent = locIncomeVar.toFixed(2) + ' $';
+function writeLoc(fromClick) {
+    if (fromClick) {
+        locIncomeVar += locValue;
+        locTotalIncome.textContent = locIncomeVar.toFixed(2) + ' $';
+    }
 
     locTotalVar ++;
     locTotalCounter.textContent = locTotalVar;
-    moneyTotalVar = moneyTotalVar + 1.50;
+    moneyTotalVar = moneyTotalVar + locValue;
 
 
     // SCRIPT COUNT
@@ -77,34 +80,32 @@ locClick.addEventListener('click', function() {
     }
 
     moneyTotalCounter.textContent = moneyTotalVar.toFixed(2) + ' $';
+};
+
+
+locClick.addEventListener('click', function() {
+    writeLoc(true);
 });
 
 
 // GENERATOR FUNCTIONS
-traineeHireBtn.addEventListener('click', function(){
-    if (traineeCost <= moneyTotalVar) {
+traineeHireBtn.addEventListener('click', function() {
+    if (moneyTotalVar >= traineeCost) {
         traineeCount++;
         traineeStockCounter.textContent = traineeCount;
 
-        moneyTotalVar = moneyTotalVar - 225;
+        moneyTotalVar -= traineeCost;
         moneyTotalCounter.textContent = moneyTotalVar.toFixed(2) + ' $';
 
-    }else{
+        traineeIncomeCounter.textContent = (traineeCount * traineeMoneyPerSecond).toFixed(2) + ' $';
+    } else {
         console.log('Not enough money!');
     }
-})
+});
+
 
 setInterval(function() {
-
-    if (traineeCount >= 1) {
-        locTotalVar ++;
-        locTotalCounter.textContent = locTotalVar;
-
-        moneyTotalVar += traineeCount * traineeMoneyPerSecond;
-        moneyTotalCounter.textContent = moneyTotalVar.toFixed(2) + ' $';
-
-        console.log(traineeMoneyPerSecond);
-        traineeIncomeCounter.textContent = traineeMoneyPerSecond.toFixed(2) + ' $';
+    for (let i = 0; i < traineeCount * traineeLocPerSecond; i++) {
+        writeLoc();
     }
-
 }, 1000);
