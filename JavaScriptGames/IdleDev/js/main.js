@@ -8,11 +8,14 @@ const appFileCounter = document.getElementById('app_file');
 const appProgressbar = document.querySelector('.progressbar_fill_apps');
 
 const locClick = document.getElementById('write_loc_btn');
+const locTotalIncome = document.getElementById('loc_income');
 
 
 // SETUP
 var locTotalVar = 0;
 var moneyTotalVar = 0;
+
+var locIncomeVar = 0;
 
 var scriptCounterVar = 0;
 var scriptTotalCounter = 0;
@@ -26,6 +29,9 @@ let appProgressWidth = 0;
 
 // ACTION FUNCTIONS
 locClick.addEventListener('click', function() {
+    locIncomeVar += 1.50;
+    locTotalIncome.textContent = locIncomeVar.toFixed(2) + ' $';
+
     locTotalVar ++;
     locTotalCounter.textContent = locTotalVar;
     moneyTotalVar = moneyTotalVar + 1.50;
