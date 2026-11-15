@@ -10,6 +10,9 @@ const appProgressbar = document.querySelector('.progressbar_fill_apps');
 const locClick = document.getElementById('write_loc_btn');
 const locTotalIncome = document.getElementById('loc_income');
 
+const traineeHireBtn = document.getElementById('trainee_btn');
+const traineeStockCounter = document.getElementById('trainee_stock_counter');
+
 
 // SETUP
 var locTotalVar = 0;
@@ -25,6 +28,10 @@ var appTotalCounter = 0;
 
 let scriptProgressWidth = 0;
 let appProgressWidth = 0;
+
+var traineeCount = 0;
+var traineeCost = 225;
+var traineeLocPerSecond = 1;
 
 
 // ACTION FUNCTIONS
@@ -69,3 +76,18 @@ locClick.addEventListener('click', function() {
 
     moneyTotalCounter.textContent = moneyTotalVar.toFixed(2) + ' $';
 });
+
+
+// GENERATOR FUNCTIONS
+traineeHireBtn.addEventListener('click', function(){
+    if (traineeCost <= moneyTotalVar) {
+        traineeCount++;
+        traineeStockCounter.textContent = traineeCount;
+
+        moneyTotalVar = moneyTotalVar - 225;
+        moneyTotalCounter.textContent = moneyTotalVar.toFixed(2) + ' $';
+
+    }else{
+        console.log('Not enough money!');
+    }
+})
