@@ -12,6 +12,7 @@ const locTotalIncome = document.getElementById('loc_income');
 
 const traineeHireBtn = document.getElementById('trainee_btn');
 const traineeStockCounter = document.getElementById('trainee_stock_counter');
+const traineeIncomeCounter = document.getElementById('trainee_income_counter');
 
 
 // SETUP
@@ -32,6 +33,7 @@ let appProgressWidth = 0;
 var traineeCount = 0;
 var traineeCost = 225;
 var traineeLocPerSecond = 1;
+var traineeMoneyPerSecond = 1.5;
 
 
 // ACTION FUNCTIONS
@@ -91,3 +93,18 @@ traineeHireBtn.addEventListener('click', function(){
         console.log('Not enough money!');
     }
 })
+
+setInterval(function() {
+
+    if (traineeCount >= 1) {
+        locTotalVar ++;
+        locTotalCounter.textContent = locTotalVar;
+
+        moneyTotalVar += traineeCount * traineeMoneyPerSecond;
+        moneyTotalCounter.textContent = moneyTotalVar.toFixed(2) + ' $';
+
+        console.log(traineeMoneyPerSecond);
+        traineeIncomeCounter.textContent = traineeMoneyPerSecond.toFixed(2) + ' $';
+    }
+
+}, 1000);
