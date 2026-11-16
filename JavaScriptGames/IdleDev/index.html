@@ -44,14 +44,14 @@
         <div class="progress_wrapper">
             <div class="progress script_file_progress">
                 <div class="label_progress">Script progress</div>
-                <div class="label_script">Bonus + $25 for each completed script.</div>
+                <div class="label_script">Bonus + $15 for each completed script.</div>
                 <div class="progressbar_script">
                     <div class="progressbar_fill_script"></div>
                 </div>
             </div>
             <div class="progress app_file_progress">
                 <div class="label_progress">App progress</div>
-                <div class="label_app">Bonus + $150 for each completed app.</div>
+                <div class="label_app">Bonus + $50 for each completed app.</div>
                 <div class="progressbar_apps">
                     <div class="progressbar_fill_apps"></div>
                 </div>
@@ -64,27 +64,35 @@
                 <div class="loc_action">
                     <span class="loc_Name">Line of Code</span>
                     <br>
-                    <span>Income: </span><span id="loc_income">0</span>
+                    <span>Income per sec. : </span><span id="loc_income">0</span>
                     <button id="write_loc_btn">Write Line of Code</button>
                 </div>
             </div>
             <div class="market_wrapper">
                 <div class="label_market">Generators</div>
                 <div class="generator_wrapper">
-                    <span class="gen_Name">Trainee</span><span class="gen_Costs">225 $</span>
+                    <span class="gen_Name">Trainee - 1 LoC/s</span><span class="gen_Costs">500 $</span>
                     <br>
                     <span>Stock: </span><span id="trainee_stock_counter">0</span>
                     <br>
-                    <span>Income: </span><span id="trainee_income_counter">0</span>
+                    <span>Income per sec. : </span><span id="trainee_income_counter">0</span>
                     <button id="trainee_btn">Hire Trainee</button>
                 </div>
                 <div class="generator_wrapper">
-                    <span class="gen_Name">Junior</span><span class="gen_Costs">500 $</span>
+                    <span class="gen_Name">Junior - 1.5 LoC/s</span><span class="gen_Costs">1500 $</span>
                     <br>
                     <span>Stock: </span><span id="junior_stock_counter">0</span>
                     <br>
                     <span>Income: </span><span id="junior_income_counter">0</span>
                     <button id="junior_btn">Hire Junior</button>
+                </div>
+                <div class="generator_wrapper">
+                    <span class="gen_Name">Senior - 6 LoC/s</span><span class="gen_Costs">4000 $</span>
+                    <br>
+                    <span>Stock: </span><span id="senior_stock_counter">0</span>
+                    <br>
+                    <span>Income per sec. : </span><span id="senior_income_counter">0</span>
+                    <button id="senior_btn">Hire Senior</button>
                 </div>
                 <div class="upgrade_wrapper">
 

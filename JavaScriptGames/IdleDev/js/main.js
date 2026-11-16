@@ -10,19 +10,26 @@ const appProgressbar = document.querySelector('.progressbar_fill_apps');
 const locClick = document.getElementById('write_loc_btn');
 const locTotalIncome = document.getElementById('loc_income');
 
-const traineeHireBtn = document.getElementById('trainee_btn');
-const traineeStockCounter = document.getElementById('trainee_stock_counter');
-const traineeIncomeCounter = document.getElementById('trainee_income_counter');
-
-const juniorHireBtn = document.getElementById('junior_btn');
-const juniorStockCounter = document.getElementById('junior_stock_counter');
-const juniorIncomeCounter = document.getElementById('junior_income_counter');
+const generators = [
+    { name: 'Trainee', cost: 500,  count: 0, locPerSecond: 1,
+      btn: document.getElementById('trainee_btn'),
+      stockEl: document.getElementById('trainee_stock_counter'),
+      incomeEl: document.getElementById('trainee_income_counter') },
+    { name: 'Junior',  cost: 1500,  count: 0, locPerSecond: 1.5,
+      btn: document.getElementById('junior_btn'),
+      stockEl: document.getElementById('junior_stock_counter'),
+      incomeEl: document.getElementById('junior_income_counter') },
+    { name: 'Senior',  cost: 4000, count: 0, locPerSecond: 6,
+      btn: document.getElementById('senior_btn'),
+      stockEl: document.getElementById('senior_stock_counter'),
+      incomeEl: document.getElementById('senior_income_counter') }
+];
 
 
 // SETUP
 var locTotalVar = 0;
 var moneyTotalVar = 0;
-var locValue = 1.50;
+var locValue = 1;
 
 var locIncomeVar = 0;
 
@@ -34,16 +41,6 @@ var appTotalCounter = 0;
 
 let scriptProgressWidth = 0;
 let appProgressWidth = 0;
-
-var traineeCount = 0;
-var traineeCost = 225;
-var traineeLocPerSecond = 1;
-var traineeMoneyPerSecond = 1.5;
-
-var juniorCount = 0;
-var juniorCost = 500;
-var juniorLocPerSecond = 2;
-var juniorMoneyPerSecond = 2;
 
 
 // ACTION FUNCTIONS
@@ -64,7 +61,7 @@ function writeLoc(fromClick) {
     scriptProgressbar.style.width = scriptProgressWidth + '%';
 
     if (scriptCounterVar === 10) {
-        moneyTotalVar += 25;
+        moneyTotalVar += 15;
 
         scriptCounterVar = 0;
         scriptTotalCounter ++;
@@ -79,7 +76,7 @@ function writeLoc(fromClick) {
     appProgressbar.style.width = appProgressWidth + '%';
 
     if (appCounterVar === 50 ) {
-        moneyTotalVar += 150;
+        moneyTotalVar += 50;
 
         appCounterVar = 0;
         appTotalCounter ++;
@@ -98,41 +95,35 @@ locClick.addEventListener('click', function() {
 
 
 // GENERATOR FUNCTIONS
-traineeHireBtn.addEventListener('click', function() {
-    if (moneyTotalVar >= traineeCost) {
-        traineeCount++;
-        traineeStockCounter.textContent = traineeCount;
+function updateGeneratorDisplay(gen) {
+    gen.stockEl.textContent = gen.count;
+    gen.incomeEl.textContent = (gen.count * gen.locPerSecond * locValue).toFixed(2) + ' $';
+}
 
-        moneyTotalVar -= traineeCost;
+function buyGenerator(gen) {
+    if (moneyTotalVar >= gen.cost) {
+        gen.count++;
+        moneyTotalVar -= gen.cost;
         moneyTotalCounter.textContent = moneyTotalVar.toFixed(2) + ' $';
-
-        traineeIncomeCounter.textContent = (traineeCount * traineeLocPerSecond * locValue).toFixed(2) + ' $';
+        updateGeneratorDisplay(gen);
     } else {
         console.log('Not enough money!');
     }
-});
+}
 
-
-juniorHireBtn.addEventListener('click', function() {
-    if (moneyTotalVar >= juniorCost) {
-        juniorCount++;
-        juniorStockCounter.textContent = juniorCount;
-
-        moneyTotalVar -= juniorCost;
-        moneyTotalCounter.textContent = moneyTotalVar.toFixed(2) + ' $';
-
-        juniorIncomeCounter.textContent = (juniorCount * juniorLocPerSecond * locValue).toFixed(2) + ' $';
-    } else {
-        console.log('Not enough money!');
-    }
-});
+for (const gen of generators) {
+    gen.btn.addEventListener('click', function() {
+        buyGenerator(gen);
+    });
+}
 
 
 setInterval(function() {
-    for (let i = 0; i < traineeCount * traineeLocPerSecond; i++) {
-        writeLoc();
+    let locThisTick = 0;
+    for (const gen of generators) {
+        locThisTick += gen.count * gen.locPerSecond;
     }
-    for (let i = 0; i < juniorCount * juniorLocPerSecond; i++) {
+    for (let i = 0; i < locThisTick; i++) {
         writeLoc();
     }
 }, 1000);
