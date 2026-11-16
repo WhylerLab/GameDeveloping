@@ -14,6 +14,10 @@ const traineeHireBtn = document.getElementById('trainee_btn');
 const traineeStockCounter = document.getElementById('trainee_stock_counter');
 const traineeIncomeCounter = document.getElementById('trainee_income_counter');
 
+const juniorHireBtn = document.getElementById('junior_btn');
+const juniorStockCounter = document.getElementById('junior_stock_counter');
+const juniorIncomeCounter = document.getElementById('junior_income_counter');
+
 
 // SETUP
 var locTotalVar = 0;
@@ -35,6 +39,11 @@ var traineeCount = 0;
 var traineeCost = 225;
 var traineeLocPerSecond = 1;
 var traineeMoneyPerSecond = 1.5;
+
+var juniorCount = 0;
+var juniorCost = 500;
+var juniorLocPerSecond = 2;
+var juniorMoneyPerSecond = 2;
 
 
 // ACTION FUNCTIONS
@@ -97,7 +106,22 @@ traineeHireBtn.addEventListener('click', function() {
         moneyTotalVar -= traineeCost;
         moneyTotalCounter.textContent = moneyTotalVar.toFixed(2) + ' $';
 
-        traineeIncomeCounter.textContent = (traineeCount * traineeMoneyPerSecond).toFixed(2) + ' $';
+        traineeIncomeCounter.textContent = (traineeCount * traineeLocPerSecond * locValue).toFixed(2) + ' $';
+    } else {
+        console.log('Not enough money!');
+    }
+});
+
+
+juniorHireBtn.addEventListener('click', function() {
+    if (moneyTotalVar >= juniorCost) {
+        juniorCount++;
+        juniorStockCounter.textContent = juniorCount;
+
+        moneyTotalVar -= juniorCost;
+        moneyTotalCounter.textContent = moneyTotalVar.toFixed(2) + ' $';
+
+        juniorIncomeCounter.textContent = (juniorCount * juniorLocPerSecond * locValue).toFixed(2) + ' $';
     } else {
         console.log('Not enough money!');
     }
@@ -106,6 +130,9 @@ traineeHireBtn.addEventListener('click', function() {
 
 setInterval(function() {
     for (let i = 0; i < traineeCount * traineeLocPerSecond; i++) {
+        writeLoc();
+    }
+    for (let i = 0; i < juniorCount * juniorLocPerSecond; i++) {
         writeLoc();
     }
 }, 1000);
