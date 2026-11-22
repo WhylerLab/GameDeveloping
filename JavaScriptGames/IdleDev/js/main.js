@@ -94,13 +94,34 @@ locClick.addEventListener('click', function() {
 });
 
 
+// OFFICES
+const offices = [
+    { name: 'Garage',       cost: 0,     background: '#212e35',
+      max: { Trainee: 5,  Junior: 3,  Senior: 1 } },
+    { name: 'Small Office', cost: 2500,  background: '#2b3a55',
+      max: { Trainee: 10, Junior: 6,  Senior: 3 } },
+    { name: 'Floor',        cost: 15000, background: '#3a2b4d',
+      max: { Trainee: 20, Junior: 12, Senior: 8 } }
+];
+
+var officeLevel = 0;
+
+const officeNameEl = document.getElementById('office_name');
+const officeBtn = document.getElementById('office_btn');
+
+
 // GENERATOR FUNCTIONS
 function updateGeneratorDisplay(gen) {
-    gen.stockEl.textContent = gen.count;
+    const max = offices[officeLevel].max[gen.name];
+    gen.stockEl.textContent = gen.count + ' / ' + max;
     gen.incomeEl.textContent = (gen.count * gen.locPerSecond * locValue).toFixed(2) + ' $';
 }
 
 function buyGenerator(gen) {
+    if (gen.count >= offices[officeLevel].max[gen.name]) {
+        console.log('Office is full!');
+        return;
+    }
     if (moneyTotalVar >= gen.cost) {
         gen.count++;
         moneyTotalVar -= gen.cost;
@@ -115,6 +136,45 @@ for (const gen of generators) {
     gen.btn.addEventListener('click', function() {
         buyGenerator(gen);
     });
+}
+
+
+
+// BUY OFFICES
+function updateOfficeDisplay() {
+    document.body.style.background = offices[officeLevel].background;
+    officeNameEl.textContent = offices[officeLevel].name;
+    const next = offices[officeLevel + 1];
+    if (next) {
+        officeBtn.textContent = 'Move to ' + next.name + ' (' + next.cost + ' $)';
+    } else {
+        officeBtn.textContent = 'Max office';
+        officeBtn.disabled = true;
+    }
+}
+
+officeBtn.addEventListener('click', function() {
+    const next = offices[officeLevel + 1];
+    if (!next) return;
+
+    if (moneyTotalVar >= next.cost) {
+        moneyTotalVar -= next.cost;
+        moneyTotalCounter.textContent = moneyTotalVar.toFixed(2) + ' $';
+        officeLevel++;
+
+        updateOfficeDisplay();
+        for (const gen of generators) {
+            updateGeneratorDisplay(gen);
+        }
+    } else {
+        console.log('Not enough money!');
+    }
+});
+
+// STARTDISPLAY
+updateOfficeDisplay();
+for (const gen of generators) {
+    updateGeneratorDisplay(gen);
 }
 
 
