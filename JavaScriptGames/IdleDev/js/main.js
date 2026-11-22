@@ -86,6 +86,7 @@ function writeLoc(fromClick) {
     }
 
     moneyTotalCounter.textContent = moneyTotalVar.toFixed(2) + ' $';
+    updateButtonStates();
 };
 
 
@@ -98,9 +99,9 @@ locClick.addEventListener('click', function() {
 const offices = [
     { name: 'Garage',       cost: 0,     background: '#212e35',
       max: { Trainee: 5,  Junior: 3,  Senior: 1 } },
-    { name: 'Small Office', cost: 2500,  background: '#2b3a55',
+    { name: 'Small Office', cost: 5000,  background: '#2b3a55',
       max: { Trainee: 10, Junior: 6,  Senior: 3 } },
-    { name: 'Floor',        cost: 15000, background: '#3a2b4d',
+    { name: 'Medium Office',        cost: 30000, background: '#3a2b4d',
       max: { Trainee: 20, Junior: 12, Senior: 8 } }
 ];
 
@@ -117,6 +118,8 @@ function updateGeneratorDisplay(gen) {
     gen.incomeEl.textContent = (gen.count * gen.locPerSecond * locValue).toFixed(2) + ' $';
 }
 
+updateButtonStates();
+
 function buyGenerator(gen) {
     if (gen.count >= offices[officeLevel].max[gen.name]) {
         console.log('Office is full!');
@@ -127,6 +130,7 @@ function buyGenerator(gen) {
         moneyTotalVar -= gen.cost;
         moneyTotalCounter.textContent = moneyTotalVar.toFixed(2) + ' $';
         updateGeneratorDisplay(gen);
+        updateButtonStates();
     } else {
         console.log('Not enough money!');
     }
@@ -138,6 +142,14 @@ for (const gen of generators) {
     });
 }
 
+function updateButtonStates() {
+    for (const gen of generators) {
+        const full = gen.count >= offices[officeLevel].max[gen.name];
+        const affordable = moneyTotalVar >= gen.cost && !full;
+        gen.btn.style.opacity = affordable ? 1 : 0.25;
+        officeBtn.style.opacity = (offices[officeLevel + 1] && moneyTotalVar >= offices[officeLevel + 1].cost) ? 1 : 0.25;
+    }
+}
 
 
 // BUY OFFICES
@@ -176,6 +188,7 @@ updateOfficeDisplay();
 for (const gen of generators) {
     updateGeneratorDisplay(gen);
 }
+updateButtonStates();
 
 
 setInterval(function() {
