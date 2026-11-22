@@ -70,6 +70,7 @@ function writeLoc(fromClick) {
         scriptFileCounter.textContent = scriptTotalCounter;
     }
 
+    
     // APP COUNT
     appCounterVar++;
     appProgressWidth += 2;
@@ -97,12 +98,9 @@ locClick.addEventListener('click', function() {
 
 // OFFICES
 const offices = [
-    { name: 'Garage',       cost: 0,     background: '#212e35',
-      max: { Trainee: 5,  Junior: 3,  Senior: 1 } },
-    { name: 'Small Office', cost: 5000,  background: '#2b3a55',
-      max: { Trainee: 10, Junior: 6,  Senior: 3 } },
-    { name: 'Medium Office',        cost: 30000, background: '#3a2b4d',
-      max: { Trainee: 20, Junior: 12, Senior: 8 } }
+    { name: 'Garage', cost: 0, background: '#212e35', max: { Trainee: 5,  Junior: 3,  Senior: 1 } },
+    { name: 'Small Office', cost: 5000, background: '#2b3a55', max: { Trainee: 10, Junior: 6,  Senior: 3 } },
+    { name: 'Medium Office', cost: 30000, background: '#3a2b4d', max: { Trainee: 20, Junior: 12, Senior: 8 } }
 ];
 
 var officeLevel = 0;
@@ -182,6 +180,7 @@ officeBtn.addEventListener('click', function() {
         console.log('Not enough money!');
     }
 });
+
 
 // STARTDISPLAY
 updateOfficeDisplay();
