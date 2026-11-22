@@ -453,8 +453,8 @@ body {
 /* ANIMATIONS */
 @keyframes shake {
     0%, 100%   { transform: translateX(0); }
-    2%         { transform: translateX(-4px) rotate(-4deg); }
-    4%         { transform: translateX(4px) rotate(4deg); }
+    2%         { transform: translateX(-4px) rotate(-2deg); }
+    4%         { transform: translateX(4px) rotate(2deg); }
     6%         { transform: translateX(-3px); }
     8%         { transform: translateX(3px); }
     10%        { transform: translateX(0); }
