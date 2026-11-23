@@ -11,16 +11,19 @@ const locClick = document.getElementById('write_loc_btn');
 const locTotalIncome = document.getElementById('loc_income');
 
 const generators = [
-    { name: 'Trainee', cost: 500,  count: 0, locPerSecond: 1,
+    { name: 'Trainee', baseCost: 150,  count: 0, locPerSecond: 1,
       btn: document.getElementById('trainee_btn'),
+      costEl: document.getElementById('trainee_cost'),
       stockEl: document.getElementById('trainee_stock_counter'),
       incomeEl: document.getElementById('trainee_income_counter') },
-    { name: 'Junior',  cost: 1500,  count: 0, locPerSecond: 1.5,
+    { name: 'Junior',  baseCost: 800,  count: 0, locPerSecond: 2,
       btn: document.getElementById('junior_btn'),
+      costEl: document.getElementById('junior_cost'),
       stockEl: document.getElementById('junior_stock_counter'),
       incomeEl: document.getElementById('junior_income_counter') },
-    { name: 'Senior',  cost: 4000, count: 0, locPerSecond: 6,
+    { name: 'Senior',  baseCost: 6000, count: 0, locPerSecond: 6,
       btn: document.getElementById('senior_btn'),
+      costEl: document.getElementById('senior_cost'),
       stockEl: document.getElementById('senior_stock_counter'),
       incomeEl: document.getElementById('senior_income_counter') }
 ];
@@ -99,8 +102,8 @@ locClick.addEventListener('click', function() {
 // OFFICES
 const offices = [
     { name: 'Garage', cost: 0, background: '#212e35', max: { Trainee: 5,  Junior: 3,  Senior: 1 } },
-    { name: 'Small Office', cost: 5000, background: '#2b3a55', max: { Trainee: 10, Junior: 6,  Senior: 3 } },
-    { name: 'Medium Office', cost: 30000, background: '#3a2b4d', max: { Trainee: 20, Junior: 12, Senior: 8 } }
+    { name: 'Small Office', cost: 20000, background: '#2b3a55', max: { Trainee: 10, Junior: 6,  Senior: 3 } },
+    { name: 'Medium Office', cost: 100000, background: '#3a2b4d', max: { Trainee: 20, Junior: 12, Senior: 8 } }
 ];
 
 var officeLevel = 0;
@@ -109,23 +112,31 @@ const officeNameEl = document.getElementById('office_name');
 const officeBtn = document.getElementById('office_btn');
 
 
+// GROWTH
+const costGrowth = 1.15;
+
+function getCost(gen) {
+    return Math.ceil(gen.baseCost * Math.pow(costGrowth, gen.count));
+}
+
+
 // GENERATOR FUNCTIONS
 function updateGeneratorDisplay(gen) {
     const max = offices[officeLevel].max[gen.name];
     gen.stockEl.textContent = gen.count + ' / ' + max;
     gen.incomeEl.textContent = (gen.count * gen.locPerSecond * locValue).toFixed(2) + ' $';
+    gen.costEl.textContent = getCost(gen) + ' $';
 }
-
-updateButtonStates();
 
 function buyGenerator(gen) {
     if (gen.count >= offices[officeLevel].max[gen.name]) {
         console.log('Office is full!');
         return;
     }
-    if (moneyTotalVar >= gen.cost) {
+    const cost = getCost(gen);
+    if (moneyTotalVar >= cost) {
+        moneyTotalVar -= cost;
         gen.count++;
-        moneyTotalVar -= gen.cost;
         moneyTotalCounter.textContent = moneyTotalVar.toFixed(2) + ' $';
         updateGeneratorDisplay(gen);
         updateButtonStates();
@@ -143,7 +154,7 @@ for (const gen of generators) {
 function updateButtonStates() {
     for (const gen of generators) {
         const full = gen.count >= offices[officeLevel].max[gen.name];
-        const affordable = moneyTotalVar >= gen.cost && !full;
+        const affordable = moneyTotalVar >= getCost(gen) && !full;
         gen.btn.style.opacity = affordable ? 1 : 0.25;
         officeBtn.style.opacity = (offices[officeLevel + 1] && moneyTotalVar >= offices[officeLevel + 1].cost) ? 1 : 0.25;
     }
@@ -176,6 +187,7 @@ officeBtn.addEventListener('click', function() {
         for (const gen of generators) {
             updateGeneratorDisplay(gen);
         }
+        updateButtonStates();
     } else {
         console.log('Not enough money!');
     }
