@@ -64,7 +64,7 @@ function writeLoc(fromClick) {
     scriptProgressbar.style.width = scriptProgressWidth + '%';
 
     if (scriptCounterVar === 10) {
-        moneyTotalVar += 15;
+        moneyTotalVar += 50;
 
         scriptCounterVar = 0;
         scriptTotalCounter ++;
@@ -80,7 +80,7 @@ function writeLoc(fromClick) {
     appProgressbar.style.width = appProgressWidth + '%';
 
     if (appCounterVar === 50 ) {
-        moneyTotalVar += 50;
+        moneyTotalVar += 150;
 
         appCounterVar = 0;
         appTotalCounter ++;
@@ -113,7 +113,7 @@ const officeBtn = document.getElementById('office_btn');
 
 
 // GROWTH
-const costGrowth = 1.15;
+const costGrowth = 1.5; //Base was 1.15
 
 function getCost(gen) {
     return Math.ceil(gen.baseCost * Math.pow(costGrowth, gen.count));
