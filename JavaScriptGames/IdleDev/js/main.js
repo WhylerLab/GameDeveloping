@@ -1,3 +1,11 @@
+// VERSION CONTROL
+
+const verID = document.getElementById('versionID');
+
+var ID = '0.6.25';
+verID.textContent = 'practice version ' + ID;
+
+
 // VARIABLES AND OBJECTIVES
 const locTotalCounter = document.getElementById('loc_total_counter');
 const moneyTotalCounter = document.getElementById('money_total_counter');

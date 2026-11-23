@@ -41,6 +41,14 @@ body {
 }
 
 
+/* VERSION */
+#versionID {
+    color: grey;
+
+    font-size: .9rem;
+}
+
+
 /* BASIC CLASSES */
 .label_resource {
     width: 100%;
