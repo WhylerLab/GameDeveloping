@@ -24,7 +24,13 @@ body {
     justify-content: center;
     flex-direction: column;
 
-    width: 800px;
+    width: 850px;
+    height: 100dvh;
+    height: 100vh;
+
+    padding: 0 25px 0 25px;
+
+    background-color: rgba(18, 25, 29, 0.9);
 }
 
 

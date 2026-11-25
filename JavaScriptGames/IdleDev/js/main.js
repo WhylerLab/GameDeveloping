@@ -39,7 +39,7 @@ const generators = [
 
 // SETUP
 var locTotalVar = 0;
-var moneyTotalVar = 0;
+var moneyTotalVar = 500000000;
 var locValue = 1;
 
 var locIncomeVar = 0;
@@ -109,9 +109,15 @@ locClick.addEventListener('click', function() {
 
 // OFFICES
 const offices = [
-    { name: 'Garage', cost: 0, background: '#212e35', max: { Trainee: 5,  Junior: 3,  Senior: 1 } },
-    { name: 'Small Office', cost: 20000, background: '#2b3a55', max: { Trainee: 10, Junior: 6,  Senior: 3 } },
-    { name: 'Medium Office', cost: 100000, background: '#3a2b4d', max: { Trainee: 20, Junior: 12, Senior: 8 } }
+    { name: 'Garage', cost: 0,
+      background: "linear-gradient(rgba(255, 255, 255, 0)), url('assets/bg/placeholder_ai1.png') center / cover no-repeat fixed #212e35",
+      max: { Trainee: 5,  Junior: 3,  Senior: 1 } },
+    { name: 'Small Office', cost: 20000,
+      background: "linear-gradient(rgba(255, 255, 255, 0)), url('assets/bg/placeholder_ai2.png') center / cover no-repeat fixed #2b3a55",
+      max: { Trainee: 10, Junior: 6,  Senior: 3 } },
+    { name: 'Medium Office', cost: 100000,
+      background: "linear-gradient(rgba(255, 255, 255, 0)), url('assets/bg/placeholder_ai3.png') center / cover no-repeat fixed #3a2b4d",
+      max: { Trainee: 20, Junior: 12, Senior: 8 } }
 ];
 
 var officeLevel = 0;
