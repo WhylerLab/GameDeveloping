@@ -2,7 +2,7 @@
 
 const verID = document.getElementById('versionID');
 
-var ID = '0.6.25';
+var ID = '0.6.3';
 verID.textContent = 'practice version ' + ID;
 
 
@@ -39,7 +39,7 @@ const generators = [
 
 // SETUP
 var locTotalVar = 0;
-var moneyTotalVar = 500000000;
+var moneyTotalVar = 0;
 var locValue = 1;
 
 var locIncomeVar = 0;
